@@ -10,7 +10,7 @@ from urllib.error import HTTPError
 
 import json
 import os
-
+import re
 from flask import Flask
 from flask import request
 from flask import make_response
@@ -38,9 +38,9 @@ def webhook():
 def processRequest(req):
     if req.get("result").get("action") != "meow":
         return {}
+    result = req.get("result")
+    parameters = result.get("parameters")
 		
-import urllib
-import re
 htmlfile = urllib.urlopen('https://random.cat/meow')
 htmltext = htmlfile.read()
 regex = '{"file":(.+?)}'
@@ -52,7 +52,7 @@ result = re.findall(pattern, htmltext)
 
         {
             "type": "picture",
-            "picUrl": result
+            "picUrl": "" + result + ""
         }
     ]
 
