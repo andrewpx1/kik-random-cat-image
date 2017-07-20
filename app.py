@@ -38,11 +38,15 @@ def webhook():
 def processRequest(req):
     if req.get("result").get("action") != "meow":
         return {}
-    baseurl = "https://random.cat/meow"
-   
-    content = urlopen(baseurl).read()
+		
+	import urllib2
 	
-	splitted_page = content.split("{"file":"", 1);
+    url = "https://random.cat/meow"
+	
+   	request = urllib2.request(url)
+	handle = urllib2.urlopen(request)
+    content = handle.read()
+	splitted_page = content.split("{"file":", 1);
 	splitted_page = splitted_page[1].split("}")
    
 
