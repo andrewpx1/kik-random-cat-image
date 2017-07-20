@@ -48,16 +48,13 @@ pattern = re.compile(regex)
 result = re.findall(pattern, htmltext)
    
 
-    kik_message = [
-
-        {
-            "type": "picture",
-            "picUrl": "" + result + ""
-        }
-    ]
-
-    print(json.dumps(kik_message))
-
+   
+	
+speech = "web address is " + result + " oh yeah"
+	
+    print("Response:")
+    print(speech)	
+	
     return {
         "speech": speech,
         "displayText": speech,
