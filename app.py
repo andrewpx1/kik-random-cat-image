@@ -39,22 +39,20 @@ def processRequest(req):
     if req.get("result").get("action") != "meow":
         return {}
 		
-	import urllib2
-	
-    url = "https://random.cat/meow"
-	
-   	request = urllib2.request(url)
-	handle = urllib2.urlopen(request)
-    content = handle.read()
-	splitted_page = content.split("{"file":", 1);
-	splitted_page = splitted_page[1].split("}")
+import urllib
+import re
+htmlfile = urllib.urlopen('https://random.cat/meow')
+htmltext = htmlfile.read()
+regex = '{"file":(.+?)}'
+pattern = re.compile(regex)
+result = re.findall(pattern, htmltext)
    
 
     kik_message = [
 
         {
             "type": "picture",
-            "picUrl": +spiltted_page[0]
+            "picUrl": result
         }
     ]
 
